@@ -1,0 +1,2 @@
+#!/bin/bash
+ganache-cli -a 10 --defaultBalanceEther 200 -l 8000000 -g 2000000000 -m "rich glide north prevent search own mobile wage oval wagon correct reflect" -i 1993
