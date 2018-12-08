@@ -1,26 +1,17 @@
-pragma solidity 0.5.0;
+pragma solidity 0.4.25;
+
+import "openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 
 /**
- * @title An amazing project called NFL
+ * @title NFL Crypto Football
  * @dev This contract is the base of our project
  */
-contract NFL {
-    uint256 private number;
-
-    /**
-     * @dev Sets the number
-     * @param newNumber The new number to store
-     */
-    function setNumber(uint256 newNumber) external {
-        number = newNumber;
-    }
-
-    /**
-     * @dev Gets the stored number
-     * @return The number as an uint
-     */
-    function getNumber() external view returns (uint256) {
-        return number;
+contract NFL is ERC721Full, Ownable {
+    constructor() public ERC721Full(
+        "NFL Crypto Football",
+        "NFL",
+    ) {
     }
 }
