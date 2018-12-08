@@ -11,7 +11,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 contract NFL is ERC721Full, Ownable {
     constructor() public ERC721Full(
         "NFL Crypto Football",
-        "NFL",
+        "NFL"
     ) {
     }
 }
