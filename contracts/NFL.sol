@@ -1,4 +1,5 @@
 pragma solidity 0.4.25;
+pragma experimental ABIEncoderV2;
 
 import "openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
@@ -13,5 +14,21 @@ contract NFL is ERC721Full, Ownable {
         "NFL Crypto Football",
         "NFL"
     ) {
+    }
+
+    struct Card {
+        string name;
+        uint256 birthdate;
+    }
+
+    Card[] private cards;
+
+    function createCard(
+        Card newCard,
+        address recipient
+    ) public onlyOwner() {
+        uint256 id = cards.push(newCard) - 1;
+
+        _mint(recipient, id);
     }
 }
