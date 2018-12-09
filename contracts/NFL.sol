@@ -31,4 +31,12 @@ contract NFL is ERC721Full, Ownable {
 
         _mint(recipient, id);
     }
+
+    function getCard(
+        uint256 cardId
+    ) public view returns (
+        Card
+    ) {
+        return cards[cardId];
+    }
 }
