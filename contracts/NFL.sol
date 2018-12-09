@@ -12,7 +12,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 contract NFL is ERC721Full, Ownable {
     constructor() public ERC721Full(
         "NFL Crypto Football",
-        "NFL"
+        "NFLC"
     ) {
     }
 
@@ -27,9 +27,10 @@ contract NFL is ERC721Full, Ownable {
         Card newCard,
         address recipient
     ) public onlyOwner() {
-        uint256 id = cards.push(newCard) - 1;
+        uint256 cardId = cards.push(newCard) - 1;
 
-        _mint(recipient, id);
+        _mint(recipient, cardId);
+        _setTokenURI(cardId, "https://nflcrypto.netlify.com/");
     }
 
     function getCard(
