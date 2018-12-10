@@ -7,8 +7,7 @@ let instance;
 
 const testCard = {
   name: 'John Doe',
-  teamId: 0,
-  rarity: 0,
+  birthdate: Math.round(Date.now() / 1000),
 };
 
 contract('NFL', (accounts) => {
@@ -28,10 +27,10 @@ contract('NFL', (accounts) => {
     }));
 
   it('Should create a new card and add it to account 1 balance', () => instance.createCard(
-    testCard.name,
-    testCard.teamId,
-    testCard.rarity,
-    accounts[1],
+    testCard,
+    accounts[1], {
+      from: accounts[1],
+    },
   ));
 
   it('Should check account 1 balance', () => instance.balanceOf(accounts[1])
@@ -41,9 +40,8 @@ contract('NFL', (accounts) => {
 
   it('Should check card 0', () => instance.getCard(0)
     .then((card) => {
-      assert.equal(card[0], testCard.name, 'Card name is wrong');
-      assert.equal(card[1], testCard.teamId, 'Card team id is wrong');
-      assert.equal(card[2], testCard.rarity, 'Card rarity is wrong');
+      assert.equal(card.name, testCard.name, 'Card name is wrong');
+      assert.equal(card.birthdate, testCard.birthdate, 'Card birthdate is wrong');
     }));
 
   it('Should check the URI of card 0', () => instance.tokenURI(0)

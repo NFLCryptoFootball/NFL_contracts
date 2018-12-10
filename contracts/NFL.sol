@@ -1,5 +1,5 @@
-pragma solidity 0.4.25;
-pragma experimental ABIEncoderV2;
+/* solhint-disable not-rely-on-time */
+pragma solidity 0.4.24;
 
 import "openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
@@ -16,18 +16,33 @@ contract NFL is ERC721Full, Ownable {
     ) {
     }
 
+    enum Rarity { Common, Rare, Epic }
+
     struct Card {
         string name;
-        uint256 birthdate;
+        uint256 teamId;
+        Rarity rarity;
+        uint256 createdAt;
     }
 
     Card[] private cards;
 
+    uint256 private stuff;
+
     function createCard(
-        Card newCard,
+        string name,
+        uint256 teamId,
+        Rarity rarity,
         address recipient
     ) public onlyOwner() {
-        uint256 cardId = cards.push(newCard) - 1;
+        uint256 cardId = cards.push(
+            Card({
+                name: name,
+                teamId: teamId,
+                createdAt: now,
+                rarity: rarity
+            })
+        ) - 1;
 
         _mint(recipient, cardId);
         _setTokenURI(cardId, "https://nflcrypto.netlify.com/");
@@ -36,8 +51,16 @@ contract NFL is ERC721Full, Ownable {
     function getCard(
         uint256 cardId
     ) public view returns (
-        Card
+        string,
+        uint256,
+        Rarity,
+        uint256
     ) {
-        return cards[cardId];
+        return (
+            cards[cardId].name,
+            cards[cardId].teamId,
+            cards[cardId].rarity,            
+            cards[cardId].createdAt
+        );
     }
 }
