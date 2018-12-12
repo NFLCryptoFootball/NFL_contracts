@@ -23,6 +23,7 @@ contract NFL is ERC721Full, Ownable {
         uint256 teamId;
         Rarity rarity;
         uint256 createdAt;
+        string data;
     }
 
     Card[] private cards;
@@ -33,14 +34,16 @@ contract NFL is ERC721Full, Ownable {
         string name,
         uint256 teamId,
         Rarity rarity,
+        string data,
         address recipient
-    ) public onlyOwner() {
+    ) public {
         uint256 cardId = cards.push(
             Card({
                 name: name,
                 teamId: teamId,
-                createdAt: now,
-                rarity: rarity
+                rarity: rarity,
+                data: data,
+                createdAt: now
             })
         ) - 1;
 
@@ -54,12 +57,14 @@ contract NFL is ERC721Full, Ownable {
         string,
         uint256,
         Rarity,
+        string,
         uint256
     ) {
         return (
             cards[cardId].name,
             cards[cardId].teamId,
-            cards[cardId].rarity,            
+            cards[cardId].rarity,
+            cards[cardId].data,
             cards[cardId].createdAt
         );
     }
