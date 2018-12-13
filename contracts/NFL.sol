@@ -35,6 +35,7 @@ contract NFL is ERC721Full, Ownable {
         uint256 teamId,
         Rarity rarity,
         string data,
+        string uri,
         address recipient
     ) public {
         uint256 cardId = cards.push(
@@ -48,7 +49,7 @@ contract NFL is ERC721Full, Ownable {
         ) - 1;
 
         _mint(recipient, cardId);
-        _setTokenURI(cardId, "https://nflcrypto.netlify.com/");
+        _setTokenURI(cardId, uri);
     }
 
     function getCard(
