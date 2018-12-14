@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 /* global artifacts, contract, it, assert */
 
-const NFL = artifacts.require('NFL');
+const NFLBase = artifacts.require('NFLBase');
 
 let instance;
 
@@ -11,8 +11,8 @@ const testCard = {
   rarity: 0,
 };
 
-contract('NFL', (accounts) => {
-  it('Should deploy an instance of the NFL contract', () => NFL.deployed()
+contract('NFLBase', (accounts) => {
+  it('Should deploy an instance of the NFLBase contract', () => NFLBase.deployed()
     .then((contractInstance) => {
       instance = contractInstance;
     }));

@@ -1,10 +1,10 @@
 /* eslint-env node */
 /* global artifacts */
 
-const NFL = artifacts.require('NFL');
+const NFLBase = artifacts.require('NFLBase');
 
 function deployContracts(deployer) {
-  deployer.deploy(NFL);
+  deployer.deploy(NFLBase);
 }
 
 module.exports = deployContracts;
