@@ -9,6 +9,8 @@ const testCard = {
   name: 'John Doe',
   teamId: 0,
   rarity: 0,
+  data: 'hexData',
+  uri: 'tokenUri',
 };
 
 contract('NFLBase', (accounts) => {
@@ -31,6 +33,8 @@ contract('NFLBase', (accounts) => {
     testCard.name,
     testCard.teamId,
     testCard.rarity,
+    testCard.data,
+    testCard.uri,
     accounts[1],
   ));
 
@@ -48,6 +52,6 @@ contract('NFLBase', (accounts) => {
 
   it('Should check the URI of card 0', () => instance.tokenURI(0)
     .then((tokenURI) => {
-      assert.equal(tokenURI, 'https://nflcrypto.netlify.com/', 'Token URI is wrong');
+      assert.equal(tokenURI, testCard.uri, 'Token URI is wrong');
     }));
 });
