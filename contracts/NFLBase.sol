@@ -1,5 +1,5 @@
 /* solhint-disable not-rely-on-time */
-pragma solidity 0.4.24;
+pragma solidity 0.4.25;
 
 import "openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
@@ -17,6 +17,7 @@ contract NFLBase is ERC721Full, Ownable {
     }
 
     enum Rarity { Common, Rare, Epic }
+    enum CardType { Player, Building }
 
     struct Card {
         string name;
